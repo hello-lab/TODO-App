@@ -1,7 +1,31 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import {toast} from "react-hot-toast"
+import { useState } from "react";
 export function SignUpForm({ className, ...props }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    toast.loading('Waiting...');
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username:username, password: password }),
+    });
+
+    const data = await res.json();
+    toast.dismiss()
+    console.log(data)
+    try{
+      data=='User Created' ? toast.success('User created successfully') : toast.error('User Exists');
+    }
+    catch(e){toast.error(e)}
+  };
+
+
+ 
   return (
     <div
       className={cn("flex text-[2.5rem] bg-white-900 flex-col w-[100%] font-hand gap-6", className)}
@@ -26,6 +50,7 @@ export function SignUpForm({ className, ...props }) {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
 
@@ -38,6 +63,7 @@ export function SignUpForm({ className, ...props }) {
                     type="password"
                     placeholder="********"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                
@@ -59,7 +85,7 @@ export function SignUpForm({ className, ...props }) {
               
 
 <div className="flex flex-row w-full justify-center gap-4">
-              <Button type="submit" className="w-max p-8  text-3xl">
+              <Button type="submit" className="w-max p-8  text-3xl" onClick={handleSignup}>
                 Sign Up
               </Button>
               </div>

@@ -1,7 +1,35 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
+import { useState } from "react";
+import {toast} from "react-hot-toast"
 export function LoginForm({ className, ...props }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    toast.loading('Waiting...');
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username:username, password: password }),
+    });
+
+    
+
+    const data = await res.json();
+    toast.dismiss()
+    if (data.message=='Login successful'){
+      toast.success('Login successful');
+      window.location.href = '/app/home'
+    }
+    else{
+      toast.error(data.message);
+  };
+}
+
   return (
     <div
       className={cn("flex text-[2.5rem]  flex-col w-[100%] font-hand ", className)}
@@ -26,6 +54,7 @@ export function LoginForm({ className, ...props }) {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
 
@@ -38,6 +67,7 @@ export function LoginForm({ className, ...props }) {
                     type="password"
                     placeholder="********"
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                
@@ -50,7 +80,7 @@ export function LoginForm({ className, ...props }) {
                
               </div>
 <div className="flex flex-row w-full justify-center gap-4">
-              <Button type="submit" className="w-max p-8  text-3xl">
+              <Button type="submit" className="w-max p-8  text-3xl" onClick={handleLogin}>
                 Login
               </Button>
                <Button type="submit" className="w-max p-8  text-3xl bg-gray-800">

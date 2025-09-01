@@ -19,7 +19,7 @@ console.log(username)
 
   try {
     const hashedPassword = await hashPassword(password);
-    const stmt = db.prepare('INSERT INTO users (username, password,balance) VALUES (?, ?,100000)');
+    const stmt = db.prepare('INSERT INTO users (email, password) VALUES (?, ?)');
     stmt.run(username, hashedPassword);
 
     return new Response(JSON.stringify("User Created"), {

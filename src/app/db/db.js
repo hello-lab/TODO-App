@@ -7,8 +7,8 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE,
     notes INTEGER DEFAULT 0,
-    password TEXT,
-  )
+    password TEXT
+  );
 `);
 
 export default db;
