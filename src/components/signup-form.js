@@ -31,21 +31,23 @@ export function SignUpForm({ className, ...props }) {
       className={cn("flex text-[2.5rem] bg-white-900 flex-col w-[100%] font-hand gap-6", className)}
      
     >
-      <div className="relative flex flex-col w-full rounded-lg border bg-[length:100%_2.5rem] bg-[linear-gradient(to_bottom,transparent_95%,#d1d5db_95%)] text-card-foreground shadow-sm p-10 sm:p-8">
-        
+      <div className="relative bg-background h-[100vh] flex flex-col w-full rounded-lg border bg-[length:100%_2.5rem] bg-[linear-gradient(to_bottom,transparent_95%,#d1d5db_95%)] text-card-foreground shadow-sm p-10 sm:p-8 w-full sm:h-[90vh]">
+
         <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-red-400 pointer-events-none"></div>
 
         <div className="font-hand font-bold text-center ">
-          <div className="text-[4.0rem] absolute  text-center translate-y-[-1.3rem]">Welcome to the Club</div>
+          <div className="text-[4.0rem] absolute top-[5vh]   text-center md:text-[10vh]">Welcome to the Club</div>
           <br />
           
           <br />
-          <form className="grid gap-8">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
+                    <br />
+
+          <form className="grid gap-8 translate-y-[2.0rem]">
+            <div className="flex flex-col gap-4 ">
+              <div className="flex items-center flex-col gap-4 w-[85vw] sm:flex-row">
                 <span>Email:</span>
                 <input
-                  className="flex-1 border rounded-md px-3 py-2 text-2xl bg-transparent"
+                  className="flex-1 border rounded-md px-3 py-2 text-2xl bg-transparent sm:px-3"
                   id="email"
                   type="email"
                   placeholder="m@example.com"
@@ -55,7 +57,7 @@ export function SignUpForm({ className, ...props }) {
               </div>
 
               <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center flex-col gap-4 sm:flex-row">
                   <span>Password:</span>
                   <input
                     className="flex-1 border rounded-md px-3 py-2 text-2xl bg-transparent"
@@ -70,7 +72,7 @@ export function SignUpForm({ className, ...props }) {
               </div>
               
 <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center flex-col gap-4 sm:flex-row">
                   <span>Confirm Password:</span>
                   <input
                     className="flex-1 border rounded-md px-3 py-2 text-2xl bg-transparent"
@@ -85,7 +87,7 @@ export function SignUpForm({ className, ...props }) {
               
 
 <div className="flex flex-row w-full justify-center gap-4">
-              <Button type="submit" className="w-max p-8  text-3xl" onClick={handleSignup}>
+              <Button type="submit" className="w-max p-8  text-2xl" onClick={handleSignup}>
                 Sign Up
               </Button>
               </div>
@@ -93,10 +95,12 @@ export function SignUpForm({ className, ...props }) {
 
             
           </form>
-          
-          <Button  className="w-max p-6 text-2xl" onClick={props.togglesignup}>
+                    <div className="w-full cursor-pointer flex items-center justify-center">
+
+          <div  className="max-w-[70vw]  p-2 text-2xl translate-y-[2.0rem] sm:p-6" onClick={props.togglesignup}>
             {`Already have an account? Log in`}
-          </Button>
+          </div>
+          </div>
         </div>
       </div>
 
