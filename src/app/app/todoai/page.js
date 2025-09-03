@@ -11,8 +11,9 @@ import {
 } from '@google/genai';
 
 async function Gemini(text1) {
+  // Use NEXT_PUBLIC_ prefix for client-side env variables
   const ai = new GoogleGenAI({
-    apiKey:"AIzaSyDuuACtngj7dDhsx6KYCp3MAcB2aLKUVy8"
+    apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY
   });
   const config = {
     mediaResolution: 'MEDIA_RESOLUTION_LOW',
