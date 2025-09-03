@@ -17,13 +17,16 @@ import {toast} from "react-hot-toast"
 
 // === Cookie helpers ===
 function setCookie(name, value, days = 365) {
+if (typeof document !== 'undefined') {
   const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-}
+}}
 
 function getCookie(name) {
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return match ? decodeURIComponent(match[2]) : null;
+if (typeof document !== 'undefined') {  
+const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return match ? decodeURIComponent(match[2]) : null;}
+else return null
 }
 
 export default function Home() {
