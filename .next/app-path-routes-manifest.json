@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/auth/login/route": "/api/auth/login",
+  "/api/auth/profile/route": "/api/auth/profile",
+  "/api/auth/signup/route": "/api/auth/signup",
+  "/api/todo/route": "/api/todo",
+  "/app/account/page": "/app/account",
+  "/app/home/page": "/app/home",
+  "/app/todo/page": "/app/todo",
+  "/app/todoai/page": "/app/todoai",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/"
+}
