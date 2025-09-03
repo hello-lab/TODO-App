@@ -3,14 +3,19 @@ import Image from "next/image";
 import HTMLFlipBook from "react-pageflip";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
-function getCookie(name) {
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  return match ? decodeURIComponent(match[2]) : null;
-}
+
+
 
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(getCookie("theme") === "dark");
+function getCookie(name) {
+if (typeof document !== 'undefined') {
+  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  return match ? decodeURIComponent(match[2]) : null;}
+else
+return ""
+}  
+const [isDark, setIsDark] = useState(getCookie("theme") === "dark");
 
   const handleThemeChange = (checked) => {
     setIsDark(checked);
